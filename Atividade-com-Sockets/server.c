@@ -1,4 +1,4 @@
-#include <winsock2.h>  // Biblioteca para estruturas e funções de sockets no domínio de rede
+#include <netinet/in.h>  // Biblioteca para estruturas e funções de sockets no domínio de rede
 #include <stdio.h>       // Biblioteca padrão de entrada/saída
 #include <stdlib.h>      // Biblioteca padrão para funções utilitárias como exit()
 #include <string.h>      // Biblioteca para manipulação de strings
@@ -57,16 +57,16 @@ int main(int argc, char const* argv[])
         perror("accept"); // Mensagem de erro caso o accept falhe
         exit(EXIT_FAILURE); // Encerra o programa com erro
     }
-
+    
     // Loop 'eterno' para receber mensagens até dizer chega
-    while (true) {
+    while (1) {
         // Lê a mensagem enviada pelo cliente
         valread = read(new_socket, buffer, sizeof(buffer)); 
         // Lê os dados recebidos no socket conectado
         printf("%s\n", buffer); // Exibe a mensagem do cliente no terminal
 
         // Copiar o valor mandado pelo cliente
-        strcpy(hello, valread);
+        strcpy(hello, &buffer);
         // Colocar um * no final para marcar a resposta
         strcat(hello, "*");
     
@@ -76,8 +76,8 @@ int main(int argc, char const* argv[])
 
         // Quebra o ciclo caso a mensagem seja 'exit'
         if (strcmp(buffer, "exit") != 0) break;
-    }   
-    
+    } 
+
     // Fecha o socket conectado (cliente)
     close(new_socket);
     

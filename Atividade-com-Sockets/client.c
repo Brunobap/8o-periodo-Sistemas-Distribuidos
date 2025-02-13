@@ -1,5 +1,5 @@
 // Client side C/C++ program to demonstrate Socket programming
-#include <winsock2.h>  // Biblioteca para funções de conversão e manipulação de endereços IP
+#include <arpa/inet.h>  // Biblioteca para funções de conversão e manipulação de endereços IP
 #include <stdio.h>      // Biblioteca padrão de entrada/saída
 #include <stdlib.h>     // Biblioteca padrão para funções utilitárias, como atoi
 #include <string.h>     // Biblioteca para manipulação de strings
@@ -38,18 +38,18 @@ int main(int argc, char const* argv[])
     }
 
     // Loop para enviar mensagens até receber um 'exit'
-    while (true)
+    while (1)
     {
         // Ler o que o cliente digitar e salvar na mensagem 'hello'
         fgets(hello, 1024, stdin);
 
-        // Envia a mensagem "Hello from Client" para o servidor
+        // Envia a mensagem digitada para o servidor
         send(sock, hello, strlen(hello), 0);
-        printf("Hello message sent\n"); // Confirmação de envio no terminal
+        printf("Mensagem '%s'\n",hello); // Confirmação de envio no terminal
 
         // Lê a resposta do servidor e armazena no buffer
         valread = read(sock, buffer, sizeof(buffer));
-        printf("%s\n", buffer); // Exibe a resposta do servidor no terminal
+        printf("Resposta '%s'\n", buffer); // Exibe a resposta do servidor no terminal
 
         // Quebrar o loop caso a mensagem seja 'exit'
         if (strcmp(hello, "exit") != 0) break;

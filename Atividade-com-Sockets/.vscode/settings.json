@@ -2,6 +2,9 @@
     "C_Cpp.default.compilerPath": "D:/MinGW/bin/gcc.exe",
     "files.associations": {
         "stdlib.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "winsock.h": "c",
+        "unistd.h": "c",
+        "winsock2.h": "c"
     }
 }

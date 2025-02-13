@@ -1,6 +1,8 @@
 from socket  import * #-
-from constCS import * #-
-#-
+
+HOST = '194.138.3.4'
+PORT = 50007
+
 class Client:
   def run(self):
     s = socket(AF_INET, SOCK_STREAM)

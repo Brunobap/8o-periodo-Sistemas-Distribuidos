@@ -1,5 +1,7 @@
 from socket  import *
-from constCS import * #-
+
+HOST = '194.136.15.41'
+PORT = 50007
 
 class Server:
   def run(self):
